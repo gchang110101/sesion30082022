@@ -6,7 +6,7 @@ import modelos.Persona;
 import modelos.Sexo;
 
 public class DPersona {
-    private ArrayList<Persona> listPersona;
+    private ArrayList<Persona> listPersona = new ArrayList<>();
 
     public DPersona() {
     }

@@ -1,20 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package formularios;
+
+import dao.DPersona;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelos.Sexo;
 
 /**
  *
- * @author labc205
+ * @author Gabriel Chang
  */
 public class FrmPersona extends javax.swing.JFrame {
-
+    DPersona dp = new DPersona();
     /**
      * Creates new form FrmPersona
      */
     public FrmPersona() {
         initComponents();
+        jBtnLimpiar.setToolTipText("Limpiar");
+        jBtnAgregar.setToolTipText("Agregar");
+        jCmbSexo.setSelectedIndex(-1);
     }
 
     /**
@@ -39,23 +43,31 @@ public class FrmPersona extends javax.swing.JFrame {
         jTfNombre = new javax.swing.JTextField();
         jTfApellidos = new javax.swing.JTextField();
         jTfEmail = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTblRegistros = new javax.swing.JTable();
+        jLblRegTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Listado de Personas");
 
+        jLblId.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLblId.setText("ID:");
 
+        jLblNombre.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLblNombre.setText("Nombre: ");
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel3.setText("Apellidos:");
 
+        jLblEmail.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLblEmail.setText("Email:");
 
-        jCmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer" }));
+        jCmbSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculino", "Femenino" }));
 
         jToolBar1.setRollover(true);
 
-        jBtnLimpiar.setText("Limpiar");
+        jBtnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/complemento/img/nuevo-producto.png"))); // NOI18N
+        jBtnLimpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnLimpiar.setFocusable(false);
         jBtnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -66,74 +78,107 @@ public class FrmPersona extends javax.swing.JFrame {
         });
         jToolBar1.add(jBtnLimpiar);
 
-        jBtnAgregar.setText("Agregar");
+        jBtnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/complemento/img/disquete.png"))); // NOI18N
+        jBtnAgregar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnAgregar.setFocusable(false);
         jBtnAgregar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnAgregar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAgregarActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnAgregar);
 
+        jLblEmail1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLblEmail1.setText("Sexo:");
+
+        jTblRegistros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(jTblRegistros);
+
+        jLblRegTitle.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLblRegTitle.setText("Tabla con Registros Ingresados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLblId)
-                        .addGap(53, 53, 53)
-                        .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLblNombre)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLblEmail1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLblEmail))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLblNombre)
+                                .addGap(22, 22, 22)
+                                .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLblId)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                                .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLblEmail)
+                                    .addComponent(jLblEmail1))
                                 .addGap(18, 18, 18)
-                                .addComponent(jTfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addComponent(jTfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(216, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTfApellidos)
+                                    .addComponent(jTfEmail)
+                                    .addComponent(jCmbSexo, 0, 163, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLblRegTitle)
+                        .addGap(46, 46, 46))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblId)
-                    .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblNombre)
-                    .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblEmail)
-                    .addComponent(jTfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblEmail1)
-                    .addComponent(jCmbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLblRegTitle)
+                    .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblId)
+                            .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblNombre)
+                            .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTfApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblEmail)
+                            .addComponent(jTfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLblEmail1)
+                            .addComponent(jCmbSexo))
+                        .addGap(20, 20, 20))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         pack();
@@ -141,8 +186,63 @@ public class FrmPersona extends javax.swing.JFrame {
 
     private void jBtnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimpiarActionPerformed
         // TODO add your handling code here:
+        Limpiar();
     }//GEN-LAST:event_jBtnLimpiarActionPerformed
 
+    private void jBtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAgregarActionPerformed
+        // TODO add your handling code here:
+        
+        if(jTfId.getText() == "" || jTfId.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el ID", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        int id = Integer.parseInt(jTfId.getText());
+        
+        String nombre = jTfNombre.getText();
+        
+        String apellidos = jTfApellidos.getText();
+        
+        String email = jTfEmail.getText();
+        
+        Sexo s;
+        
+        if (jCmbSexo.getSelectedIndex() == 0) 
+            s = Sexo.HOMBRE;
+        else 
+            s = Sexo.MUJER;
+        
+        int b = dp.agregarPersona(id, nombre, apellidos, email, s);
+        
+        if(b == 1) {
+            JOptionPane.showMessageDialog(this, "Registro Agregado...", 
+                    "Guardar", JOptionPane.INFORMATION_MESSAGE);
+            llenarTabla();
+            Limpiar();
+        }
+        else {
+            JOptionPane.showMessageDialog(this, "Error al guardar...", 
+                    "Guardar", JOptionPane.ERROR_MESSAGE);
+        }
+        llenarTabla();
+    }//GEN-LAST:event_jBtnAgregarActionPerformed
+
+    private void llenarTabla() {
+        DefaultTableModel tbl = new DefaultTableModel();
+        tbl = dp.getListPer();
+        jTblRegistros.setModel(tbl);
+    }
+    
+    private void Limpiar() {
+        jTfId.setText("");
+        jTfNombre.setText("");
+        jTfApellidos.setText("");
+        jTfEmail.setText("");
+        jCmbSexo.setSelectedIndex(-1);
+        jTfId.requestFocus();
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -187,6 +287,9 @@ public class FrmPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLblEmail1;
     private javax.swing.JLabel jLblId;
     private javax.swing.JLabel jLblNombre;
+    private javax.swing.JLabel jLblRegTitle;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTblRegistros;
     private javax.swing.JTextField jTfApellidos;
     private javax.swing.JTextField jTfEmail;
     private javax.swing.JTextField jTfId;
