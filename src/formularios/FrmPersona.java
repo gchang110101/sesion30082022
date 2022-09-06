@@ -38,6 +38,13 @@ public class FrmPersona extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jBtnLimpiar = new javax.swing.JButton();
         jBtnAgregar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        jBtnPrimero = new javax.swing.JButton();
+        jBtnAnterior = new javax.swing.JButton();
+        jBtnSiguiente = new javax.swing.JButton();
+        jBtnUltimo = new javax.swing.JButton();
         jLblEmail1 = new javax.swing.JLabel();
         jTfId = new javax.swing.JTextField();
         jTfNombre = new javax.swing.JTextField();
@@ -90,6 +97,48 @@ public class FrmPersona extends javax.swing.JFrame {
         });
         jToolBar1.add(jBtnAgregar);
 
+        jButton1.setText("jButton1");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton1);
+
+        jButton2.setText("jButton2");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jButton2);
+        jToolBar1.add(jSeparator1);
+
+        jBtnPrimero.setText("|<");
+        jBtnPrimero.setFocusable(false);
+        jBtnPrimero.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnPrimero.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnPrimero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnPrimeroActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(jBtnPrimero);
+
+        jBtnAnterior.setText("<<");
+        jBtnAnterior.setFocusable(false);
+        jBtnAnterior.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnAnterior.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jBtnAnterior);
+
+        jBtnSiguiente.setText(">>");
+        jBtnSiguiente.setFocusable(false);
+        jBtnSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnSiguiente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jBtnSiguiente);
+
+        jBtnUltimo.setText(">|");
+        jBtnUltimo.setFocusable(false);
+        jBtnUltimo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBtnUltimo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jBtnUltimo);
+
         jLblEmail1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLblEmail1.setText("Sexo:");
 
@@ -114,18 +163,10 @@ public class FrmPersona extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLblNombre)
-                                .addGap(22, 22, 22)
-                                .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLblId)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -135,8 +176,19 @@ public class FrmPersona extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTfApellidos)
                                     .addComponent(jTfEmail)
-                                    .addComponent(jCmbSexo, 0, 163, Short.MAX_VALUE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)))
+                                    .addComponent(jCmbSexo, 0, 163, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLblId)
+                                    .addComponent(jLblNombre))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(22, 22, 22)
+                                        .addComponent(jTfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addComponent(jTfId, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -228,6 +280,37 @@ public class FrmPersona extends javax.swing.JFrame {
         llenarTabla();
     }//GEN-LAST:event_jBtnAgregarActionPerformed
 
+    private void jBtnPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnPrimeroActionPerformed
+        // TODO add your handling code here:
+        if (!dp.getListPersona().isEmpty()) {
+            try {
+                int id = dp.getListPersona().get(0).getId();
+                String nom = dp.getListPersona().get(0).getNombre();
+                String ape = dp.getListPersona().get(0).getApellido();
+                String ema = dp.getListPersona().get(0).getEmail();
+                Sexo sex = dp.getListPersona().get(0).getSexo();
+                
+                jTfId.setText(""+id);
+                jTfNombre.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                
+                if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay registro...", "Registros",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+            
+        
+        
+    }//GEN-LAST:event_jBtnPrimeroActionPerformed
+
     private void llenarTabla() {
         DefaultTableModel tbl = new DefaultTableModel();
         tbl = dp.getListPer();
@@ -280,7 +363,13 @@ public class FrmPersona extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnAgregar;
+    private javax.swing.JButton jBtnAnterior;
     private javax.swing.JButton jBtnLimpiar;
+    private javax.swing.JButton jBtnPrimero;
+    private javax.swing.JButton jBtnSiguiente;
+    private javax.swing.JButton jBtnUltimo;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jCmbSexo;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLblEmail;
@@ -289,6 +378,7 @@ public class FrmPersona extends javax.swing.JFrame {
     private javax.swing.JLabel jLblNombre;
     private javax.swing.JLabel jLblRegTitle;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JTable jTblRegistros;
     private javax.swing.JTextField jTfApellidos;
     private javax.swing.JTextField jTfEmail;
