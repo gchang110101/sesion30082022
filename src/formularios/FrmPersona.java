@@ -11,6 +11,7 @@ import modelos.Sexo;
  */
 public class FrmPersona extends javax.swing.JFrame {
     DPersona dp = new DPersona();
+    private int pos = 0;
     /**
      * Creates new form FrmPersona
      */
@@ -125,18 +126,33 @@ public class FrmPersona extends javax.swing.JFrame {
         jBtnAnterior.setFocusable(false);
         jBtnAnterior.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnAnterior.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnAnterior.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnAnteriorActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnAnterior);
 
         jBtnSiguiente.setText(">>");
         jBtnSiguiente.setFocusable(false);
         jBtnSiguiente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnSiguiente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnSiguienteActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnSiguiente);
 
         jBtnUltimo.setText(">|");
         jBtnUltimo.setFocusable(false);
         jBtnUltimo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jBtnUltimo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBtnUltimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnUltimoActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jBtnUltimo);
 
         jLblEmail1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -244,8 +260,30 @@ public class FrmPersona extends javax.swing.JFrame {
     private void jBtnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAgregarActionPerformed
         // TODO add your handling code here:
         
+        //validar campo vacio ID
         if(jTfId.getText() == "" || jTfId.getText().length() == 0) {
             JOptionPane.showMessageDialog(this, "Necesita  Agregar el ID", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Nombre
+        if(jTfNombre.getText() == "" || jTfNombre.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el Nombre", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Apellidos
+        if(jTfApellidos.getText() == "" || jTfApellidos.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar los Apellidos", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Email
+        if(jTfEmail.getText() == "" || jTfEmail.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el Email", 
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -284,11 +322,12 @@ public class FrmPersona extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (!dp.getListPersona().isEmpty()) {
             try {
-                int id = dp.getListPersona().get(0).getId();
-                String nom = dp.getListPersona().get(0).getNombre();
-                String ape = dp.getListPersona().get(0).getApellido();
-                String ema = dp.getListPersona().get(0).getEmail();
-                Sexo sex = dp.getListPersona().get(0).getSexo();
+                pos = 0;
+                int id = dp.getListPersona().get(pos).getId();
+                String nom = dp.getListPersona().get(pos).getNombre();
+                String ape = dp.getListPersona().get(pos).getApellido();
+                String ema = dp.getListPersona().get(pos).getEmail();
+                Sexo sex = dp.getListPersona().get(pos).getSexo();
                 
                 jTfId.setText(""+id);
                 jTfNombre.setText(nom);
@@ -310,6 +349,95 @@ public class FrmPersona extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jBtnPrimeroActionPerformed
+
+    private void jBtnUltimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUltimoActionPerformed
+        // TODO add your handling code here:
+        if (!dp.getListPersona().isEmpty()){
+            try {
+                pos = dp.getListPersona().size() - 1;
+                int id = dp.getListPersona().get(pos).getId();
+                String nom = dp.getListPersona().get(pos).getNombre();
+                String ape = dp.getListPersona().get(pos).getApellido();
+                String ema = dp.getListPersona().get(pos).getEmail();
+                Sexo sex = dp.getListPersona().get(pos).getSexo();
+                
+                jTfId.setText(""+id);
+                jTfNombre.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                
+                if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay registro...", "Registros",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnUltimoActionPerformed
+
+    private void jBtnAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAnteriorActionPerformed
+        // TODO add your handling code here:
+        if (!dp.getListPersona().isEmpty()){
+            try {
+                pos--;
+                if (pos < 0) pos = dp.getListPersona().size() - 1;
+                int id = dp.getListPersona().get(pos).getId();
+                String nom = dp.getListPersona().get(pos).getNombre();
+                String ape = dp.getListPersona().get(pos).getApellido();
+                String ema = dp.getListPersona().get(pos).getEmail();
+                Sexo sex = dp.getListPersona().get(pos).getSexo();
+                
+                jTfId.setText(""+id);
+                jTfNombre.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                
+                if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay registro...", "Registros",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnAnteriorActionPerformed
+
+    private void jBtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSiguienteActionPerformed
+        // TODO add your handling code here:
+        if (!dp.getListPersona().isEmpty()){
+            try {
+                pos++;
+                if (pos == dp.getListPersona().size()) pos = 0;
+                int id = dp.getListPersona().get(pos).getId();
+                String nom = dp.getListPersona().get(pos).getNombre();
+                String ape = dp.getListPersona().get(pos).getApellido();
+                String ema = dp.getListPersona().get(pos).getEmail();
+                Sexo sex = dp.getListPersona().get(pos).getSexo();
+                
+                jTfId.setText(""+id);
+                jTfNombre.setText(nom);
+                jTfApellidos.setText(ape);
+                jTfEmail.setText(ema);
+                
+                if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
+                else jCmbSexo.setSelectedIndex(1);
+                
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(),
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay registro...", "Registros",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jBtnSiguienteActionPerformed
 
     private void llenarTabla() {
         DefaultTableModel tbl = new DefaultTableModel();
