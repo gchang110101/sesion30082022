@@ -289,7 +289,7 @@ public class FrmPersona extends javax.swing.JFrame {
         }
         
         int id = Integer.parseInt(jTfId.getText());
-        
+        //HOla
         String nombre = jTfNombre.getText();
         
         String apellidos = jTfApellidos.getText();
