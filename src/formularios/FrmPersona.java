@@ -19,6 +19,12 @@ public class FrmPersona extends javax.swing.JFrame {
         initComponents();
         jBtnLimpiar.setToolTipText("Limpiar");
         jBtnAgregar.setToolTipText("Agregar");
+        jBtnEditar.setToolTipText("Editar");
+        jBtnEliminar.setToolTipText("Eliminar");
+        jBtnPrimero.setToolTipText("Primero");
+        jBtnSiguiente.setToolTipText("Siguiente");
+        jBtnAnterior.setToolTipText("Anterior");
+        jBtnUltimo.setToolTipText("Ultimo");
         jCmbSexo.setSelectedIndex(-1);
     }
 
@@ -302,13 +308,13 @@ public class FrmPersona extends javax.swing.JFrame {
             return;
         }
         
-        //validar campo Sexo
+        //validar campo vacio Sexo
         if(jCmbSexo.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(this, "Necesita Agregar un Sexo",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+                
         int id = Integer.parseInt(jTfId.getText());
         //HOla
         String nombre = jTfNombre.getText();
@@ -331,6 +337,7 @@ public class FrmPersona extends javax.swing.JFrame {
                     "Guardar", JOptionPane.INFORMATION_MESSAGE);
             llenarTabla();
             Limpiar();
+            
         }
         else {
             JOptionPane.showMessageDialog(this, "Error al guardar...", 
@@ -393,6 +400,10 @@ public class FrmPersona extends javax.swing.JFrame {
                 
                 if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
                 else jCmbSexo.setSelectedIndex(1);
+                
+                jBtnAgregar.setEnabled(false);
+                jBtnEditar.setEnabled(true);
+                jBtnEliminar.setEnabled(true);
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(),
@@ -458,6 +469,10 @@ public class FrmPersona extends javax.swing.JFrame {
                 if (sex == Sexo.HOMBRE) jCmbSexo.setSelectedIndex(0);
                 else jCmbSexo.setSelectedIndex(1);
                 
+                jBtnAgregar.setEnabled(false);
+                jBtnEditar.setEnabled(true);
+                jBtnEliminar.setEnabled(true);
+                
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(),
                         "Error", JOptionPane.ERROR_MESSAGE);
@@ -470,6 +485,41 @@ public class FrmPersona extends javax.swing.JFrame {
 
     private void jBtnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditarActionPerformed
         // TODO add your handling code here:
+        //validar campo vacio ID
+        if(jTfId.getText() == "" || jTfId.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el ID", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Nombre
+        if(jTfNombre.getText() == "" || jTfNombre.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el Nombre", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Apellidos
+        if(jTfApellidos.getText() == "" || jTfApellidos.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar los Apellidos", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Email
+        if(jTfEmail.getText() == "" || jTfEmail.getText().length() == 0) {
+            JOptionPane.showMessageDialog(this, "Necesita  Agregar el Email", 
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //validar campo vacio Sexo
+        if(jCmbSexo.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(this, "Necesita Agregar un Sexo",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         dp.getListPersona().get(pos).setId(Integer.parseInt(jTfId.getText()));
         dp.getListPersona().get(pos).setNombre(jTfNombre.getText());
         dp.getListPersona().get(pos).setApellido(jTfApellidos.getText());
@@ -484,6 +534,10 @@ public class FrmPersona extends javax.swing.JFrame {
 
         llenarTabla();
         Limpiar();
+        
+        jBtnAgregar.setEnabled(true);
+        jBtnEditar.setEnabled(false);
+        jBtnEliminar.setEnabled(false);
     }//GEN-LAST:event_jBtnEditarActionPerformed
 
     private void jBtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEliminarActionPerformed
@@ -498,6 +552,11 @@ public class FrmPersona extends javax.swing.JFrame {
             
             llenarTabla();
             Limpiar();
+            
+            jBtnAgregar.setEnabled(true);
+            jBtnEditar.setEnabled(false);
+            jBtnEliminar.setEnabled(false);
+            
         } else {
             JOptionPane.showMessageDialog(this, "Operacion cancelada.");
         }
@@ -516,9 +575,11 @@ public class FrmPersona extends javax.swing.JFrame {
         jTfEmail.setText("");
         jCmbSexo.setSelectedIndex(-1);
         
+        /*
         jBtnAgregar.setEnabled(false);
         jBtnEditar.setEnabled(true);
         jBtnEliminar.setEnabled(true);
+        */
         
         jTfId.requestFocus();
     }

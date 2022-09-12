@@ -2,8 +2,11 @@ package dao;
 
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import modelos.Persona;
-import modelos.Sexo;
+
+import modelos.*;
+
+/*import modelos.Persona;
+import modelos.Sexo;*/
 
 public class DPersona {
     private ArrayList<Persona> listPersona = new ArrayList<>();
